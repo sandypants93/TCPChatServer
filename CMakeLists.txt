@@ -8,12 +8,20 @@
 
 
 # project setup
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 3.12)
 project(TcpChatServer)
 
 # dependency setup
-add_subdirectory (queue)
+add_subdirectory(LinkedList)
+set(DEPENDENCIES 
+    LinkedList
+)
 
 # executable setup
-set(SOURCES src/server.c)
+set(SOURCES 
+    src/server.c
+)
 add_executable(server ${SOURCES})
+target_link_libraries(server 
+    PRIVATE
+    ${DEPENDENCIES})
